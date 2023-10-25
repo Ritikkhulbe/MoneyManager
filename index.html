@@ -1,0 +1,53 @@
+<html lang="en">
+    <head>
+        <title>Money Manager</title>
+        
+    </head>     
+    <body style="padding: 30px; background: black; color: white">
+        <h1>
+            Money Manager
+        </h1>
+        <p class = "total-money-para">
+            Enter the total money you own:
+            <input placeholder="Total Money" class = "total" onkeydown="addBalance(event)">
+        </p>
+        
+        <p class = "saving-money-para">
+            Enter the total amount you want to save from your current balance.
+            <input placeholder="Savings" class = "save" onkeydown="Save(event)">
+        </p>
+        
+        <script>
+            const Bank = {
+                balance: 0,
+                saving: 0,
+                util: 0
+            }
+            function addBalance(event){
+                let inputElement;
+                if(event.key === 'Enter'){
+                    inputElement = document.querySelector('.total');
+                    Bank.balance += Number(inputElement.value);
+                    console.log(Bank.balance);
+                    document.querySelector('.total-money-para').innerHTML = `Total Money Set : $${Bank.balance}`;
+                }
+            };
+            function Save(event){
+                let inputElement;
+                if(event.key === 'Enter'){
+            
+                    inputElement = document.querySelector('.save');
+                    if(Bank.balance<Number(inputElement.value)){
+                        alert("you don't have that much to save");
+                        return;
+                    }else{
+                        Bank.balance -= Number(inputElement.value);
+                        Bank.saving += Number(inputElement.value);
+                        document.querySelector('.saving-money-para').innerHTML = `Total Saving Set : $${Bank.saving}`;
+                    }
+                    
+                }
+            };
+        </script>
+    </body>
+</html>
